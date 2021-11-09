@@ -22,4 +22,4 @@ The Message Option byte controls different aspects of the communication:
 | Bit 4:7               | CNT[0:3]  |  0-15: indicates how many more frames are left to be send (if 0 - there is only one frame) |
 
 
-![One Frame Request Flow](/../images/One_Frame_Request.drawio.png)
+![One Frame Request Flow](/docs/images/One_Frame_Request.drawio.png)
