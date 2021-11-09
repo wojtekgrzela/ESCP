@@ -26,7 +26,7 @@ Having some experience with different communication protocols and stack, the aut
 
 
 
-##[Messages flow in requests handling.](docs/REQUESTS.md)
+## [Messages flow in requests handling.](docs/REQUESTS.md)
 
 
 
