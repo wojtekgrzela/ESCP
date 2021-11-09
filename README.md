@@ -12,19 +12,19 @@ There are a few goals which are especially taken into consideration during devel
 Having some experience with different communication protocols and stack, the author tries his best to provide the greatest possible solution for embedded applications.
 
 
-#### Protocol capabilities:
+### Protocol capabilities:
  - Based on requests and answers
  - 255 addresses for different devices (255 - broadcast address)
  - user-configurable maximal length (from 256 up to 4096 bytes)
  - user-configurable requests and data formatting
  
  
-#### Protocol minimal requirements: //TODO
+### Protocol minimal requirements: //TODO
  - bytes of ROM
  - bytes of RAM
 
 
-#### Standard message request frame:
+### Standard message request frame:
 
 | ***Request Frame*** | Receiver Address | Sender Address | Message Options | Data Length |  Data | CRC |
 |:-------------------:|:----------------:|:--------------:|:---------------:|:-----------:|:-----:|:---:|
@@ -34,9 +34,9 @@ The standard request frame can be between 5 and 264 bytes long. It can contain f
 
 The Message Option byte controls different aspects of the communication:
  - **Bit 0** says if the frame carries a request or a response to a request.
- - **Bits 1:2** say what kind of CRC is used for the message. [More about the CRC](docs/CRC.md)
+ - **Bits 1:2** say what kind of CRC is used for the message. [More about the CRC.](docs/CRC.md)
  - **Bit 3** stays reserved for future use and expanding the protocol if needed.
- - **Bits 4:7** say how many frames are left to be send. This protocol allows the user to send more than 256 bytes in one request - the maximum value is 4096 bytes. It is achieved by sending frames one after another. If CNT[0:3]==0 then there is only one frame. If CNT>0 then more frames will follow. [More about the multiframe request](docs/DUMMY.md)
+ - **Bits 4:7** say how many frames are left to be send. This protocol allows the user to send more than 256 bytes in one request - the maximum value is 4096 bytes. It is achieved by sending frames one after another. If CNT[0:3]==0 then there is only one frame. If CNT>0 then more frames will follow. [More about the multiframe request.](docs/DUMMY.md)
 
 | ***Message Options*** |  Bit Name |                                         Description                                        |
 |:---------------------:|:---------:|:------------------------------------------------------------------------------------------:|
@@ -47,7 +47,7 @@ The Message Option byte controls different aspects of the communication:
 
 
 
-#### Standard message response frame when some data needs to be sent back:
+### Standard message response frame when some data needs to be sent back:
 
 | ***Response Frame*** | Receiver Address | Sender Address | Message Options | Data Length |  Data | CRC |
 |:--------------------:|:----------------:|:--------------:|:---------------:|:-----------:|:-----:|:---:|
@@ -57,16 +57,16 @@ The standard response frame can be between 5 and 264 bytes long. It can contain 
 
 The frame looks very much the same as the request one. The difference in the Message Options byte:
  - **Bit 0** says if the frame carries a request or a response to a request.
- - **Bits 1** says if the response is with data or rather a response code. [More about the responses](docs/DUMMY.md)
- - **Bit 2:3** say what kind of CRC is used for the message. [More about the CRC](docs/CRC.md)
- - **Bits 4:7** say how many frames are left to be send. This protocol allows the user to send more than 256 bytes in one answer - the maximum value is 4096 bytes. It is achieved by sending frames one after another. If CNT[0:3]==0 then there is only one frame. If CNT>0 then more frames will follow. [More about the multiframe answers](docs/DUMMY.md)
+ - **Bits 1** says if the response is with data or rather a response code. [More about the responses.](docs/DUMMY.md)
+ - **Bit 2:3** say what kind of CRC is used for the message. [More about the CRC.](docs/CRC.md)
+ - **Bits 4:7** say how many frames are left to be send. This protocol allows the user to send more than 256 bytes in one answer - the maximum value is 4096 bytes. It is achieved by sending frames one after another. If CNT[0:3]==0 then there is only one frame. If CNT>0 then more frames will follow. [More about the multiframe answers.](docs/DUMMY.md)
 
-| Message Options |  Bit Name |                                        Description                                        |
-|:---------------:|:---------:|:-----------------------------------------------------------------------------------------:|
-| Bit 0           | REQ / ANS |                                  1 - Request 0 - Answer                                   |
-| Bit 1           | DATARES   |                   1 - Response with Data, 0 - Response with Return Code                   |
-| Bit 2:3         | CRC[0:1]  |                     00 - no CRC, 01 - CRC-8, 10 - CRC-16, 11 - CRC-32                     |
-| Bit 4:7         | CNT[0:3]  | 0-15: indicates how many more frames are left to be send (if 0 - there is only one frame) |
+| ***Message Options*** |  Bit Name |                                        Description                                        |
+|:---------------------:|:---------:|:-----------------------------------------------------------------------------------------:|
+| Bit 0                 | REQ / ANS |                                  1 - Request 0 - Answer                                   |
+| Bit 1                 | DATARES   |                   1 - Response with Data, 0 - Response with Return Code                   |
+| Bit 2:3               | CRC[0:1]  |                     00 - no CRC, 01 - CRC-8, 10 - CRC-16, 11 - CRC-32                     |
+| Bit 4:7               | CNT[0:3]  | 0-15: indicates how many more frames are left to be send (if 0 - there is only one frame) |
 
 
 
